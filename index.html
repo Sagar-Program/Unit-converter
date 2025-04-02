@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, select, button { padding: 10px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Unit Converter</h1>
+    <input type="number" id="inputValue" placeholder="Enter value">
+    <select id="unitType">
+        <option value="km-to-miles">Kilometers to Miles</option>
+        <option value="miles-to-km">Miles to Kilometers</option>
+        <option value="kg-to-lbs">Kilograms to Pounds</option>
+        <option value="lbs-to-kg">Pounds to Kilograms</option>
+        <option value="celsius-to-fahrenheit">Celsius to Fahrenheit</option>
+        <option value="fahrenheit-to-celsius">Fahrenheit to Celsius</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <h2 id="result"></h2>
+
+    <script>
+        function convert() {
+            const value = parseFloat(document.getElementById('inputValue').value);
+            const unitType = document.getElementById('unitType').value;
+            let result = '';
+            
+            if (isNaN(value)) {
+                result = 'Please enter a valid number';
+            } else {
+                switch (unitType) {
+                    case 'km-to-miles': result = (value * 0.621371).toFixed(2) + ' Miles'; break;
+                    case 'miles-to-km': result = (value * 1.60934).toFixed(2) + ' Kilometers'; break;
+                    case 'kg-to-lbs': result = (value * 2.20462).toFixed(2) + ' Pounds'; break;
+                    case 'lbs-to-kg': result = (value * 0.453592).toFixed(2) + ' Kilograms'; break;
+                    case 'celsius-to-fahrenheit': result = ((value * 9/5) + 32).toFixed(2) + ' °F'; break;
+                    case 'fahrenheit-to-celsius': result = ((value - 32) * 5/9).toFixed(2) + ' °C'; break;
+                }
+            }
+            
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
